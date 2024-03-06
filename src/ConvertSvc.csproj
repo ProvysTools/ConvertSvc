@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Version>1.6.1</Version>
+
+        <Authors>Provys, DCIT</Authors>
+        <Company>DCIT</Company>
+        <Copyright>Copyright © $([System.DateTime]::Now.Year) Provys</Copyright>
+        <Owners>Provys by DCIT</Owners>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Configurations>Debug;Release;LibDebug</Configurations>
+        <RootNamespace>Provys.Service.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+        <AssemblyName>$(MSBuildProjectName.ToLower())</AssemblyName>
+
+        <ProjectUrl>https://git.dcit.cz/pvyscomponents/net/services/convertsvc</ProjectUrl>
+        <Description>ConvertSvc is service and nuget library for performing BlobToText and ExcelToCSV conversion using REST call.</Description>
+
+        <PackageId>Provys.Service.$(MSBuildProjectName.Replace(" ", "_"))</PackageId>
+        <PackageReleaseNotes>Released as NuGet library.</PackageReleaseNotes>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DotNetZip" Version="1.16.0" />
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
+        <PackageReference Include="Provys.Serilog.Formatter" Version="1.0.3" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Serilog.Sinks.Seq" Version="6.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+        <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
+        <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+        <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+        <PackageReference Include="PdfPig" Version="0.1.8" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'LibDebug|AnyCPU' ">
+        <ProjectReference Include="c:\provys\pvyscomponents\Provys.Service.Base\src\Provys.Service.Base.csproj" />
+        <ProjectReference Include="c:\provys\pvyscomponents\Provys.Standard.Xmlss\src\Provys.Standard.Xmlss.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' Or '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PackageReference Include="Provys.Service.Base" Version="1.5.1" />
+        <PackageReference Include="Provys.Standard.Xmlss" Version="0.0.16" />
+    </ItemGroup>
+</Project>
+
